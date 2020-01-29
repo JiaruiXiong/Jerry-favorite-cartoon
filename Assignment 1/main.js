@@ -16,24 +16,24 @@ function Animation(spriteSheet,startX,startY,frameWidth, frameHeight, sheetWidth
     this.reverse = reverse;
 }
 
-Animation.prototype.drawFrame = function (tick, ctx, x, y) {
-    this.elapsedTime += tick;
-    if (this.isDone()) {
-        if (this.loop) this.elapsedTime = 0;
-    }
-    var frame = this.currentFrame();
-    var xindex = 0;
-    var yindex = 0;
-    xindex = frame % this.sheetWidth;
-    yindex = Math.floor(frame / this.sheetWidth);
+// Animation.prototype.drawFrame = function (tick, ctx, x, y) {
+//     this.elapsedTime += tick;
+//     if (this.isDone()) {
+//         if (this.loop) this.elapsedTime = 0;
+//     }
+//     var frame = this.currentFrame();
+//     var xindex = 0;
+//     var yindex = 0;
+//     xindex = frame % this.sheetWidth;
+//     yindex = Math.floor(frame / this.sheetWidth);
 
-    ctx.drawImage(this.spriteSheet,
-                 xindex * this.frameWidth, yindex * this.frameHeight,  // source from sheet
-                 this.frameWidth, this.frameHeight,
-                 x, y,
-                 this.frameWidth * this.scale,
-                 this.frameHeight * this.scale);
-}
+//     ctx.drawImage(this.spriteSheet,
+//                  xindex * this.frameWidth, yindex * this.frameHeight,  // source from sheet
+//                  this.frameWidth, this.frameHeight,
+//                  x, y,
+//                  this.frameWidth * this.scale,
+//                  this.frameHeight * this.scale);
+// }
 
 Animation.prototype.drawFrame = function (tick, ctx, x, y) {
     this.elapsedTime += tick;
@@ -41,9 +41,11 @@ Animation.prototype.drawFrame = function (tick, ctx, x, y) {
         if (this.isDone()) {
             this.elapsedTime = 0;
         }
-    } else if (this.isDone()) {
-        return; // addd !!!!!
     }
+    // }
+    //  else if (this.isDone()) {
+    //     return; // addd !!!!!
+    // }
     var index = this.reverse ? this.frames - this.currentFrame() - 1 : this.currentFrame();
     var vindex = 0;
     if ((index + 1) * this.frameWidth + this.startX > this.spriteSheet.width) {
@@ -221,25 +223,28 @@ Charmander.prototype.update = function () {
     if (this.x > 1024) this.x = -230;
 }
 
-// Ash and friends class 
-function Ash(game, spritesheet) {
-    this.animation = new Animation(spritesheet,0,0, 338, 107 ,2, 0.45, 2, true, 1.4,false);
-    this.x = 1024;
-    this.y = 402;
-    this.speed = -100;
-    this.game = game;
-    this.ctx = game.ctx;
-}
 
-Ash.prototype.draw = function () {
-    this.animation.drawFrame(this.game.clockTick, this.ctx, this.x, this.y);
-}
+// // Ludicolo class 
+// function Ludicolo(game, spritesheet) {
+//     this.animation = new Animation(spritesheet,0,0, 730, 620 ,5, 0.25, 60, true, 0.32,false);
+//     this.x = 800;
+//     this.y = 402;
+//     this.speed = 0;
+//     this.game = game;
+//     this.ctx = game.ctx;
+// }
 
-Ash.prototype.update = function () {
-    if (this.animation.elapsedTime < this.animation.totalTime * 8 / 2)
-        this.x += this.game.clockTick * this.speed;
-    if (this.x < -360) this.x = 1024;
-}
+// Ludicolo.prototype.draw = function () {
+//     this.animation.drawFrame(this.game.clockTick, this.ctx, this.x, this.y);
+// }
+
+// Ludicolo.prototype.update = function () {
+//     if (this.animation.elapsedTime < this.animation.totalTime * 5 / 60)
+//         this.x += this.game.clockTick * this.speed;
+//     if (this.x > 1024) this.x = 0;
+// }
+
+
 
 
 // Moltres class 
@@ -297,8 +302,8 @@ Charizard.prototype.update = function () {
 // 基本完成，需要调整位置。
 // Snorlax class
 function Snorlax(game) {
-    this.animation = new Animation(AM.getAsset("./img/snorlax.png"),0,0, 570, 311, 5, 0.08, 97, false, 0.4,false);
-    this.kickingAnimation = new Animation(AM.getAsset("./img/snorlaxkicking.png"),0,0, 483, 311, 5, 0.25, 15, false, 0.38,false);
+    this.animation = new Animation(AM.getAsset("./img/snorlax.png"),0,0, 570, 311, 5, 0.05, 97, false, 0.4,false);
+    this.kickingAnimation = new Animation(AM.getAsset("./img/snorlaxkicking.png"),0,0, 483, 311, 5, 0.15, 15, false, 0.38,false);
     // this.rollingAnimation = new Animation(AM.getAsset("./img/snorlaxrolling.png"),0,0, 588, 279, 5, 0.1, 18, true, 0.39,false);
     // this.stayAnimation = new Animation(AM.getAsset("./img/snorlaxStanding.png"),0,0, 588, 279, 5, 0.1, 18, true, 0.39,false);
     this.x = 0;
@@ -343,9 +348,9 @@ Snorlax.prototype.update = function () {
             this.animation.elapsedTime = 0;
             this.rotation = false;
             this.kicking = true;
-            this.x += 80;
+            this.x += 125;  // 基本合格
             // console.log("done rotation");
-            console.log(this.x)
+            // console.log(this.x)
         }
     }
     if (this.kicking) {
@@ -353,7 +358,7 @@ Snorlax.prototype.update = function () {
             this.kickingAnimation.elapsedTime = 0;
             this.rotation = true;
             this.kicking  = false;
-            this.x += 80;
+            this.x += 68; // 基本合格
             // console.log("done kicking");
         }
     }
@@ -478,7 +483,7 @@ AM.queueDownload("./img/snorlaxrolling.png");
 AM.queueDownload("./img/bulbasaur.png");
 AM.queueDownload("./img/gengar.png");
 AM.queueDownload("./img/charmander.png");
-AM.queueDownload("./img/ash.png");
+// AM.queueDownload("./img/ludicolo.png");
 AM.queueDownload("./img/squirtle.png");
 AM.queueDownload("./img/moltres.png");
 AM.queueDownload("./img/background.png");
@@ -497,7 +502,7 @@ AM.downloadAll(function () {
     gameEngine.addEntity(new Dragonite(gameEngine,AM.getAsset("./img/dragonite.png")));
     gameEngine.addEntity(new Snorlax(gameEngine));
 
-    gameEngine.addEntity(new Ash(gameEngine, AM.getAsset("./img/ash.png")));
+    // gameEngine.addEntity(new Ludicolo(gameEngine, AM.getAsset("./img/ludicolo.png")));
     gameEngine.addEntity(new Squirtle(gameEngine,AM.getAsset("./img/squirtle.png")));
     gameEngine.addEntity(new Bulbasaur(gameEngine, AM.getAsset("./img/bulbasaur.png")));
     gameEngine.addEntity(new Gengar(gameEngine, AM.getAsset("./img/gengar.png")));
