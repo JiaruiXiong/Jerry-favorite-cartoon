@@ -182,7 +182,6 @@ Bulbasaur.prototype.update = function () {
 }
 
 
-// 加语言
 // Gengar class 
 function Gengar(game, spritesheet) {
     this.animation = new Animation(spritesheet,0,0, 500, 469,5, 0.09, 13, true, 0.18,false);
@@ -223,26 +222,6 @@ Charmander.prototype.update = function () {
     if (this.x > 1024) this.x = -230;
 }
 
-
-// // Ludicolo class 
-// function Ludicolo(game, spritesheet) {
-//     this.animation = new Animation(spritesheet,0,0, 730, 620 ,5, 0.25, 60, true, 0.32,false);
-//     this.x = 800;
-//     this.y = 402;
-//     this.speed = 0;
-//     this.game = game;
-//     this.ctx = game.ctx;
-// }
-
-// Ludicolo.prototype.draw = function () {
-//     this.animation.drawFrame(this.game.clockTick, this.ctx, this.x, this.y);
-// }
-
-// Ludicolo.prototype.update = function () {
-//     if (this.animation.elapsedTime < this.animation.totalTime * 5 / 60)
-//         this.x += this.game.clockTick * this.speed;
-//     if (this.x > 1024) this.x = 0;
-// }
 
 
 
@@ -375,76 +354,7 @@ Snorlax.prototype.update = function () {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// //基本完成，需要调整位置。
-// // CharmanderCombination class
-// function CharmanderCombination(game) {
-//     this.charmanderAnimation = new Animation(AM.getAsset("./img/charmanderwalking.png"),0,0, 550, 471, 5, 0.9, 16, true, 0.3,false);
-//     this.charmeleonAnimation = new Animation(AM.getAsset("./img/charmeleon.png"),0,0, 200, 200, 5, 0.6, 4, true, 1,false);
-//     this.charizardAnimation  = new Animation(AM.getAsset("./img/charizardflying.png"),0,0, 600, 610, 5, 0.1, 48, true, 0.24,false);
-//     this.x = 1024;
-//     this.y = 440;
-//     this.speed = -100;
-//     this.game = game;
-//     this.ctx = game.ctx;
-//     this.charmander = true;
-//     this.charmeleon = false;
-//     this.charizard  = false;
-
-// }
-
-// CharmanderCombination.prototype.draw = function () {
-//     if (this.x > 700) {
-//         this.charmanderAnimation.drawFrame(this.game.clockTick,this.ctx, this.x, this.y);
-//         // this.charmander = false;
-//         // this.charmeleon = true;
-//         // this.charizard  = false;
-        
-//     }
-//     else if (this.x >= 180 && this.x <= 700) {
-//         this.charmeleonAnimation.drawFrame(this.game.clockTick,this.ctx, this.x, this.y);
-//         // this.charmander = false;
-//         // this.charmeleon = false;
-//         // this.charizard  = true;
-//     }
-//     else {
-//         this.charizardAnimation.drawFrame(this.game.clockTick, this.ctx, this.x, this.y);
-//         // this.charmander = true;
-//         // this.charmeleon = false;
-//         // this.charizard  = false;
-//     }
-//     Entity.prototype.draw.call(this);
-// }
-
-// CharmanderCombination.prototype.update = function () {
-//     if (this.charmanderAnimation.elapsedTime < this.charmanderAnimation.totalTime * 8 / 16)
-//         this.x += this.game.clockTick * this.speed;
-//     if (this.charmeleonAnimation.elapsedTime < this.charmeleonAnimation.totalTime * 4 / 4)
-//         this.x += this.game.clockTick * this.speed;
-//     if (this.charizardAnimation.elapsedTime < this.charizardAnimation.totalTime * 5 / 48)
-//         this.x += this.game.clockTick * this.speed;
-//     if (this.x < 0) this.x = 1024;
-// }
-
-
-
-
-
-
-// Ash and friends class 
+// Bird class 
 function Bird(game, spritesheet) {
     this.animation = new Animation(spritesheet,0,0, 192, 192 ,5, 0.045, 26, true, 0.58,false);
     this.x = 1024;
