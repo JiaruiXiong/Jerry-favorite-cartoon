@@ -284,29 +284,20 @@ function Snorlax(game) {
     this.animation = new Animation(AM.getAsset("./img/snorlax.png"),0,0, 570, 311, 5, 0.05, 97, false, 0.4,false);
     this.kickingAnimation = new Animation(AM.getAsset("./img/snorlaxkicking.png"),0,0, 483, 311, 5, 0.15, 15, false, 0.38,false);
     
-    this.stayAnimation = new Animation(AM.getAsset("./img/snorlaxStanding.png"),0,0, 588, 279, 5, 0.1, 18, true, 0.39,false);
     this.x = -150;
     this.y = 340;
     this.speed = 0;
     this.game = game;
     this.ctx = game.ctx;
     this.rotation = true;
-    // this.rolling = false;
+    
     this.kicking = false;
+
+    this.standing = false;
 }
 
 Snorlax.prototype.draw = function () {
 
-
-    // if (this.x > 550) {
-    //     this.rollingAnimation.drawFrame(this.game.clockTick,this.ctx, this.x+200, this.y);       
-    // }  
-    // else if (this.x >= 400) {
-    //     this.kickingAnimation.drawFrame(this.game.clockTick,this.ctx, this.x, this.y);
-    // }
-    // else {
-    //     this.animation.drawFrame(this.game.clockTick, this.ctx, this.x, this.y);
-    // }
 
     if (this.kicking) {
         this.kickingAnimation.drawFrame(this.game.clockTick,this.ctx, this.x, this.y);
@@ -335,14 +326,10 @@ Snorlax.prototype.update = function () {
             this.kickingAnimation.elapsedTime = 0;
             this.rotation = true;
             this.kicking  = false;
-            this.x += 68; // 基本合格
+            this.x += 71.75; // 基本合格
            
         }
     }
-    // if (this.rolling) {
-    //     if (this.rollingAnimation.elapsedTime < this.rollingAnimation.totalTime * 8 / 97)
-    //     this.x += this.game.clockTick * this.speed;
-    // }
     if (this.x > 1024) this.x = -150;
     // console.log("Before calling update");
     Entity.prototype.update.call(this);
@@ -378,20 +365,14 @@ Bird.prototype.update = function () {
 
 
 
-
-// AM.queueDownload("./img/charmanderwalking.png");
-// AM.queueDownload("./img/charmeleon.png");
-// AM.queueDownload("./img/charizardflying.png");
 AM.queueDownload("./img/bird.png");
 AM.queueDownload("./img/charizard.png");
 AM.queueDownload("./img/dragonite.png");
 AM.queueDownload("./img/snorlax.png");
 AM.queueDownload("./img/snorlaxkicking.png");
-AM.queueDownload("./img/snorlaxrolling.png");
 AM.queueDownload("./img/bulbasaur.png");
 AM.queueDownload("./img/gengar.png");
 AM.queueDownload("./img/charmander.png");
-// AM.queueDownload("./img/ludicolo.png");
 AM.queueDownload("./img/squirtle.png");
 AM.queueDownload("./img/moltres.png");
 AM.queueDownload("./img/background.png");
