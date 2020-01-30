@@ -278,7 +278,6 @@ Charizard.prototype.update = function () {
 
 
 
-// 基本完成，需要调整位置。
 // Snorlax class
 function Snorlax(game) {
     this.animation = new Animation(AM.getAsset("./img/snorlax.png"),0,0, 570, 311, 5, 0.05, 97, false, 0.4,false);
@@ -289,11 +288,9 @@ function Snorlax(game) {
     this.speed = 0;
     this.game = game;
     this.ctx = game.ctx;
-    this.rotation = true;
+    this.rotation = false;
     
-    this.kicking = false;
-
-    this.standing = false;
+    this.kicking = true;
 }
 
 Snorlax.prototype.draw = function () {
@@ -316,7 +313,7 @@ Snorlax.prototype.update = function () {
             this.animation.elapsedTime = 0;
             this.rotation = false;
             this.kicking = true;
-            this.x += 125;  // 基本合格
+            this.x += 124;  // 基本合格
             // console.log("done rotation");
 
         }
