@@ -306,7 +306,7 @@ function Snorlax(game) {
     this.kickingAnimation = new Animation(AM.getAsset("./img/snorlaxkicking.png"),0,0, 483, 311, 5, 0.15, 15, false, 0.38,false);
     // this.rollingAnimation = new Animation(AM.getAsset("./img/snorlaxrolling.png"),0,0, 588, 279, 5, 0.1, 18, true, 0.39,false);
     // this.stayAnimation = new Animation(AM.getAsset("./img/snorlaxStanding.png"),0,0, 588, 279, 5, 0.1, 18, true, 0.39,false);
-    this.x = 0;
+    this.x = -150;
     this.y = 340;
     this.speed = 0;
     this.game = game;
@@ -366,7 +366,7 @@ Snorlax.prototype.update = function () {
     //     if (this.rollingAnimation.elapsedTime < this.rollingAnimation.totalTime * 8 / 97)
     //     this.x += this.game.clockTick * this.speed;
     // }
-    if (this.x > 1024) this.x = 0;
+    if (this.x > 1024) this.x = -150;
     // console.log("Before calling update");
     Entity.prototype.update.call(this);
 }
