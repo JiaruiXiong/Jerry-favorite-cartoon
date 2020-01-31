@@ -36,7 +36,9 @@ function Animation(spriteSheet,startX,startY,frameWidth, frameHeight, sheetWidth
 // }
 
 Animation.prototype.drawFrame = function (tick, ctx, x, y) {
+    // console.log("haha"+tick);
     this.elapsedTime += tick;
+
     if (this.loop) {
         if (this.isDone()) {
             this.elapsedTime = 0;
@@ -295,9 +297,9 @@ function Snorlax(game) {
 
 Snorlax.prototype.draw = function () {
 
-
     if (this.kicking) {
         this.kickingAnimation.drawFrame(this.game.clockTick,this.ctx, this.x, this.y);
+        
     }
     else {
         this.animation.drawFrame(this.game.clockTick, this.ctx, this.x, this.y);
@@ -341,7 +343,7 @@ function Bird(game, spritesheet) {
     this.animation = new Animation(spritesheet,0,0, 192, 192 ,5, 0.045, 26, true, 0.58,false);
     this.x = 1024;
     this.y = 170;
-    this.speed = -83;
+    this.speed = -83
     this.game = game;
     this.ctx = game.ctx;
 }
@@ -360,6 +362,32 @@ Bird.prototype.update = function () {
     }
 }
 
+// // eevee class 
+// function Eevee(game, spritesheet) {
+//     this.animation = new Animation(spritesheet,0,0, 192, 192 ,5, 0.045, 26, true, 0.58,false);
+//     this.x = 0;
+//     this.y = 170;
+//     this.speed = -83
+//     this.game = game;
+//     this.ctx = game.ctx;
+// }
+
+// Bird.prototype.draw = function () {
+//     this.animation.drawFrame(this.game.clockTick, this.ctx, this.x, this.y);
+// }
+
+// Bird.prototype.update = function () {
+//     if (this.animation.elapsedTime < this.animation.totalTime * 8 / 5)
+//         this.x += this.game.clockTick * this.speed;
+//         this.y += this.game.clockTick * (this.speed *0.12) ;
+//     if (this.x < -80){
+//         this.x = 1024;
+//         this.y = 170;
+//     }
+// }
+
+
+
 
 
 AM.queueDownload("./img/bird.png");
@@ -374,6 +402,11 @@ AM.queueDownload("./img/squirtle.png");
 AM.queueDownload("./img/moltres.png");
 AM.queueDownload("./img/background.png");
 
+
+AM.queueDownload("./img/walk.png");
+AM.queueDownload("./img/jump.png");
+
+
 AM.downloadAll(function () {
     var canvas = document.getElementById("gameWorld");
     var ctx = canvas.getContext("2d");
@@ -381,6 +414,8 @@ AM.downloadAll(function () {
     var gameEngine = new GameEngine();
     gameEngine.init(ctx);
     gameEngine.start();
+
+
 
 
     gameEngine.addEntity(new Background(gameEngine, AM.getAsset("./img/background.png")));
@@ -395,7 +430,7 @@ AM.downloadAll(function () {
     gameEngine.addEntity(new Charmander(gameEngine, AM.getAsset("./img/charmander.png")));
     gameEngine.addEntity(new Bird(gameEngine, AM.getAsset("./img/bird.png")));
     gameEngine.addEntity(new Moltres(gameEngine, AM.getAsset("./img/moltres.png")));
-    // gameEngine.addEntity(new CharmanderCombination(gameEngine));
+    gameEngine.addEntity(new CharmanderCombination(gameEngine));
     
 
 
