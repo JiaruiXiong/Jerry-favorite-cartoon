@@ -44,7 +44,6 @@ Animation.prototype.drawFrame = function (tick, ctx, x, y) {
             this.elapsedTime = 0;
         }
     }
-    // }
     //  else if (this.isDone()) {
     //     return; // addd !!!!!
     // }
@@ -362,29 +361,28 @@ Bird.prototype.update = function () {
     }
 }
 
-// // eevee class 
-// function Eevee(game, spritesheet) {
-//     this.animation = new Animation(spritesheet,0,0, 192, 192 ,5, 0.045, 26, true, 0.58,false);
-//     this.x = 0;
-//     this.y = 170;
-//     this.speed = -83
-//     this.game = game;
-//     this.ctx = game.ctx;
-// }
 
-// Bird.prototype.draw = function () {
-//     this.animation.drawFrame(this.game.clockTick, this.ctx, this.x, this.y);
-// }
+// eevee class 
+function Eevee(game, spritesheet) {
+    this.animation = new Animation(spritesheet,0,0, 244,151,4, 0.11, 4, true, 0.45,false);
+    this.x = -50;
+    this.y = 475;
+    this.speed = 40.5;
+    this.game = game;
+    this.ctx = game.ctx;
+}
 
-// Bird.prototype.update = function () {
-//     if (this.animation.elapsedTime < this.animation.totalTime * 8 / 5)
-//         this.x += this.game.clockTick * this.speed;
-//         this.y += this.game.clockTick * (this.speed *0.12) ;
-//     if (this.x < -80){
-//         this.x = 1024;
-//         this.y = 170;
-//     }
-// }
+Eevee.prototype.draw = function () {
+    this.animation.drawFrame(this.game.clockTick, this.ctx, this.x, this.y);
+}
+
+Eevee.prototype.update = function () {
+    if (this.animation.elapsedTime < this.animation.totalTime * 5 / 7)
+        this.x += this.game.clockTick * this.speed;
+    if (this.x > 1072){
+        this.x = -50;
+    }
+}
 
 
 
@@ -403,8 +401,7 @@ AM.queueDownload("./img/moltres.png");
 AM.queueDownload("./img/background.png");
 
 
-AM.queueDownload("./img/walk.png");
-AM.queueDownload("./img/jump.png");
+AM.queueDownload("./img/eeveehaha.png");
 
 
 AM.downloadAll(function () {
@@ -422,6 +419,7 @@ AM.downloadAll(function () {
     gameEngine.addEntity(new Charizard(gameEngine));
     gameEngine.addEntity(new Dragonite(gameEngine,AM.getAsset("./img/dragonite.png")));
     gameEngine.addEntity(new Snorlax(gameEngine));
+    gameEngine.addEntity(new Eevee(gameEngine, AM.getAsset("./img/eeveehaha.png")));
 
     // gameEngine.addEntity(new Ludicolo(gameEngine, AM.getAsset("./img/ludicolo.png")));
     gameEngine.addEntity(new Squirtle(gameEngine,AM.getAsset("./img/squirtle.png")));
