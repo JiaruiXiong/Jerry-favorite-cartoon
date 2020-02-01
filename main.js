@@ -421,7 +421,6 @@ AM.downloadAll(function () {
     gameEngine.addEntity(new Snorlax(gameEngine));
     gameEngine.addEntity(new Eevee(gameEngine, AM.getAsset("./img/eeveehaha.png")));
 
-    // gameEngine.addEntity(new Ludicolo(gameEngine, AM.getAsset("./img/ludicolo.png")));
     gameEngine.addEntity(new Squirtle(gameEngine,AM.getAsset("./img/squirtle.png")));
     gameEngine.addEntity(new Bulbasaur(gameEngine, AM.getAsset("./img/bulbasaur.png")));
     gameEngine.addEntity(new Gengar(gameEngine, AM.getAsset("./img/gengar.png")));
