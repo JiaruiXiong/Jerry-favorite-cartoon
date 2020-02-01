@@ -386,7 +386,88 @@ Eevee.prototype.update = function () {
 
 
 
+// function Totoro(game) {
+//     this.runningAnimation = new Animation(AM.getAsset("./img/totororunning.png"),0,0, 327, 208 ,5, 0.09, 12, true,0.26,false);
+//     this.x = -50;
+//     this.y = 10;
+//     this.speed = 88;
+//     this.game = game;
+//     this.ctx = game.ctx;
+// }
 
+// Totoro.prototype.draw = function () {
+//     this.animation.drawFrame(this.game.clockTick, this.ctx, this.x, this.y);
+// }
+
+
+// Totoro.prototype.update = function () {
+//     if (this.animation.elapsedTime < this.animation.totalTime * 6 / 15);
+//         this.x += this.game.clockTick * this.speed;
+//         if (this.x > 1024) {
+//             this.x = -50;
+//         }
+// }
+
+
+function Totoro(game) {
+    this.runningAnimation = new Animation(AM.getAsset("./img/totororunning.png"),0,0, 131.5, 131.5, 5, 0.04, 72, true, 1,false);
+    this.animation = new Animation(AM.getAsset("./img/totorowalking.png"), 0,0,262, 262, 5, 0.04, 24, true, 0.5,false);
+    this.x = 1024;
+    this.y = 380;
+    this.speed = -40;
+    this.game = game;
+    this.ctx = game.ctx;
+
+    this.walking = true;
+    this.running = false;
+    // console.log("Where is my totoro");
+}
+
+
+Totoro.prototype.update = function() {
+    if (this.x < 700 && this.x >=240) {
+        console.log(this.x);
+        this.x += this.game.clockTick * this.speed * 2.1;
+        this.walking = false;
+        this.running = true;
+    }
+    else {
+        this.x += this.game.clockTick * this.speed;
+        this.walking = true;
+        this.running = false;
+    }
+    // this.x += this.game.clockTick * this.speed;
+    if (this.x < -40) this.x = 1024;
+    // console.log("Where is my totoro");
+    Entity.prototype.update.call(this);
+};
+
+Totoro.prototype.draw = function() {
+    // console.log("Where is my totoro");
+    if (this.running) {
+        this.runningAnimation.drawFrame(this.game.clockTick, this.ctx, this.x, this.y);
+    }
+    if(this.walking){
+        this.animation.drawFrame(this.game.clockTick, this.ctx, this.x, this.y);
+    }
+
+    Entity.prototype.draw.call(this);
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+AM.queueDownload("./img/totororunning.png");
+AM.queueDownload("./img/totorowalking.png");
 
 AM.queueDownload("./img/bird.png");
 AM.queueDownload("./img/charizard.png");
@@ -419,8 +500,11 @@ AM.downloadAll(function () {
     gameEngine.addEntity(new Charizard(gameEngine));
     gameEngine.addEntity(new Dragonite(gameEngine,AM.getAsset("./img/dragonite.png")));
     gameEngine.addEntity(new Snorlax(gameEngine));
-    gameEngine.addEntity(new Eevee(gameEngine, AM.getAsset("./img/eeveehaha.png")));
 
+    gameEngine.addEntity(new Totoro(gameEngine));
+    gameEngine.addEntity(new Eevee(gameEngine, AM.getAsset("./img/eeveehaha.png")));
+    // console.log("Where is my totoro");
+    
     gameEngine.addEntity(new Squirtle(gameEngine,AM.getAsset("./img/squirtle.png")));
     gameEngine.addEntity(new Bulbasaur(gameEngine, AM.getAsset("./img/bulbasaur.png")));
     gameEngine.addEntity(new Gengar(gameEngine, AM.getAsset("./img/gengar.png")));
