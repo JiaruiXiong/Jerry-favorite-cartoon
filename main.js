@@ -256,7 +256,7 @@ function Charizard(game) {
     this.animation = new Animation(AM.getAsset("./img/charizard.png"),0,0, 327, 208 ,5, 0.09, 12, true,0.26,false);
     this.x = -50;
     this.y = 10;
-    this.speed = 80;
+    this.speed = 88;
     this.game = game;
     this.ctx = game.ctx;
 }
@@ -281,7 +281,7 @@ Charizard.prototype.update = function () {
 
 // Snorlax class
 function Snorlax(game) {
-    this.animation = new Animation(AM.getAsset("./img/snorlax.png"),0,0, 570, 311, 5, 0.05, 97, false, 0.4,false);
+    this.animation = new Animation(AM.getAsset("./img/snorlax.png"),0,0, 570, 311, 5, 0.05, 92, false, 0.4,false);
     this.kickingAnimation = new Animation(AM.getAsset("./img/snorlaxkicking.png"),0,0, 483, 311, 5, 0.15, 15, false, 0.38,false);
     
     this.x = -150;
@@ -314,7 +314,7 @@ Snorlax.prototype.update = function () {
             this.animation.elapsedTime = 0;
             this.rotation = false;
             this.kicking = true;
-            this.x += 124;  // 基本合格
+            this.x += 124.5;  // 基本合格
             // console.log("done rotation");
 
         }
