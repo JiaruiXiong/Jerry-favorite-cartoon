@@ -386,40 +386,6 @@ Eevee.prototype.update = function () {
 
 
 
-// eevee class 
-function Vehicle(game, spritesheet) {
-    this.animation = new Animation(spritesheet,0,0, 256,256,4, 0.11, 4, true, 0.45,false);
-    this.x = 200;
-    this.y = 200;
-    this.speed = 0;
-    this.game = game;
-    this.ctx = game.ctx;
-}
-
-Vehicle.prototype.draw = function () {
-    this.animation.drawFrame(this.game.clockTick, this.ctx, this.x, this.y);
-}
-
-Vehicle.prototype.update = function () {
-    if (this.animation.elapsedTime < this.animation.totalTime * 5 / 4)
-        this.x += this.game.clockTick * this.speed;
-    if (this.x > 1072){
-        this.x = -50;
-    }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-AM.queueDownload("./img/vehicleA.png");
 
 
 AM.queueDownload("./img/bird.png");
@@ -462,10 +428,7 @@ AM.downloadAll(function () {
     gameEngine.addEntity(new Charmander(gameEngine, AM.getAsset("./img/charmander.png")));
     gameEngine.addEntity(new Bird(gameEngine, AM.getAsset("./img/bird.png")));
     gameEngine.addEntity(new Moltres(gameEngine, AM.getAsset("./img/moltres.png")));
-    // gameEngine.addEntity(new CharmanderCombination(gameEngine));
 
-
-    gameEngine.addEntity(new Vehicle(gameEngine, AM.getAsset("./img/vehicleA.png")));
     
 
 
